@@ -1,0 +1,37 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--sidebar-width);
+  min-width: 0; /* Prevent overflow */
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-body {
+  padding: 24px;
+  flex: 1;
+  background-color: var(--bg-body);
+  overflow-x: hidden;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .content-body {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-body {
+    padding: 12px;
+  }
+}

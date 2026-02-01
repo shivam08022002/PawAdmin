@@ -1,0 +1,165 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  
+  /* Modern Professional Palette */
+  --primary: #2563EB; /* Royal Blue */
+  --primary-hover: #1D4ED8;
+  --primary-light: #EFF6FF;
+  
+  --secondary: #64748B; /* Slate */
+  --secondary-light: #F1F5F9;
+  
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  
+  --bg-body: #F3F4F6; /* Light gray background */
+  --bg-surface: #FFFFFF;
+  --bg-sidebar: #1E293B; /* Dark slate sidebar */
+  --sidebar-width: 280px;
+  
+  --text-main: #111827;
+  --text-muted: #6B7280;
+  --text-light: #F9FAFB;
+  --muted: var(--text-muted);
+  
+  --border: #E5E7EB;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow: var(--shadow-md);
+  --radius: 16px;
+  --card: var(--bg-surface);
+  --primary-2: var(--primary-hover);
+
+  background-color: var(--bg-body);
+  color: var(--text-main);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#root {
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-main);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:hover {
+  border-color: var(--primary);
+}
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Keep light mode default for this dashboard as requested "professional white/blue" usually implies light mode, 
+       but we can support dark mode variables if needed. For now, forcing a consistent professional light theme 
+       as shown in the image is safer unless user asked for dark mode. 
+       I will override the media query to keep the light theme consistent with the image provided. */
+    color: var(--text-main);
+    background-color: var(--bg-body);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, .25);
+}
+.btn:hover {
+  background: var(--primary-2);
+  transform: translateY(-1px);
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, .35);
+  box-shadow: none;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hide-lg {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-columns-2 {
+    grid-template-columns: 1fr;
+  }
+}
