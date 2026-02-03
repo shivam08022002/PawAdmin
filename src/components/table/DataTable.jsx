@@ -2,7 +2,7 @@ import './DataTable.css'
 
 export default function DataTable({ title, columns, rows, actionLabel, onAction }) {
   return (
-    <div className="table card">
+    <div className="table-card">
       <div className="table-head">
         <h3>{title}</h3>
         {actionLabel && (
@@ -10,7 +10,7 @@ export default function DataTable({ title, columns, rows, actionLabel, onAction 
         )}
       </div>
       <div className="table-scroll">
-        <table>
+        <table className="custom-table">
           <thead>
             <tr>
               {columns.map((c) => (

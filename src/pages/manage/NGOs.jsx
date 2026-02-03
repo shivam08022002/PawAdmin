@@ -1,4 +1,4 @@
-import '../Page.css'
+import './table.css'
 
 export default function NGOs() {
   const items = [
@@ -8,14 +8,27 @@ export default function NGOs() {
   return (
     <div className="page">
       <h2 className="page-title">Manage NGOs</h2>
-      <div className="card list-card">
-        {items.map((i) => (
-          <div key={i.name} className="list-row list-row-3">
-            <div>{i.name}</div>
-            <div className="list-meta">{i.city}</div>
-            <div className="list-meta">{i.status}</div>
-          </div>
-        ))}
+      <div className="card table-card">
+        <table className="custom-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((i) => (
+              <tr key={i.name}>
+                <td className="font-medium">{i.name}</td>
+                <td>{i.city}</td>
+                <td>
+                  <span className="status-badge success">{i.status}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )

@@ -1,0 +1,35 @@
+.time-input-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.time-select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 14px;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+  min-width: 50px;
+}
+
+.time-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.period-select {
+  min-width: 60px;
+  background-color: var(--bg-body);
+  font-weight: 600;
+}
+
+.time-separator {
+  font-weight: bold;
+  color: var(--text-muted);
+}

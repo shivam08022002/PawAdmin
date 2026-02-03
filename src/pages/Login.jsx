@@ -24,6 +24,12 @@ export default function Login() {
       if (data?.token) {
         localStorage.setItem('token', data.token)
       }
+      if (data?.user) {
+        localStorage.setItem('user', JSON.stringify(data.user))
+      }
+      if (data?.role) {
+        localStorage.setItem('role', data.role)
+      }
       navigate('/dashboard')
     } catch (err) {
       console.error(err)

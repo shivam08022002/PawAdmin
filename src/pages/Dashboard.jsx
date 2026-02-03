@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import StatsCard from '../components/stats/StatsCard.jsx'
 import DataTable from '../components/table/DataTable.jsx'
 import LineChart from '../components/charts/LineChart.jsx'
 import PieChart from '../components/charts/PieChart.jsx'
+import { getDashboardStats } from '../services/apiServices'
 import './Dashboard.css'
 import { Activity, ClipboardList, Heart, Users } from 'lucide-react'
 
@@ -34,22 +36,46 @@ const adoptionRows = [
 ]
 
 export default function Dashboard() {
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    pendingAdoptions: 0,
+    emergencyCases: 0,
+    openTasks: 0,
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchStats()
+  }, [])
+
+  const fetchStats = async () => {
+    try {
+      setLoading(true)
+      const data = await getDashboardStats()
+      setStats(data)
+    } catch (error) {
+      console.error('Error fetching dashboard stats:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="dashboard-grid">
       <div className="col-12">
         <h2 className="dash-title">Admin Dashboard</h2>
       </div>
       <div className="col-3">
-        <StatsCard icon={<Users size={18} />} label="Total Users" value="1,250" color="blue" />
+        <StatsCard icon={<Users size={18} />} label="Total Users" value={stats.totalUsers.toLocaleString()} color="blue" />
       </div>
       <div className="col-3">
-        <StatsCard icon={<Heart size={18} />} label="Pending Adoptions" value="85" color="green" />
+        <StatsCard icon={<Heart size={18} />} label="Pending Adoptions" value={stats.pendingAdoptions.toLocaleString()} color="green" />
       </div>
       <div className="col-3">
-        <StatsCard icon={<Activity size={18} />} label="Emergency Cases" value="12" color="red" />
+        <StatsCard icon={<Activity size={18} />} label="Emergency Cases" value={stats.emergencyCases.toLocaleString()} color="red" />
       </div>
       <div className="col-3">
-        <StatsCard icon={<ClipboardList size={18} />} label="Open Tasks" value="34" color="orange" />
+        <StatsCard icon={<ClipboardList size={18} />} label="Open Tasks" value={stats.openTasks.toLocaleString()} color="orange" />
       </div>
 
       <div className="col-6">
