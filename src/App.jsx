@@ -3,6 +3,7 @@ import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import VolunteerBrandID from './pages/VolunteerBrandID.jsx'
 import AdoptionRequest from './pages/AdoptionRequest.jsx'
+import StrayDogReports from './pages/StrayDogReports.jsx'
 import MedicalEmergencyRequest from './pages/MedicalEmergencyRequest.jsx'
 import Tasks from './pages/Tasks.jsx'
 import LostFound from './pages/LostFound.jsx'
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="manage/brand" element={<Brand />} />
           <Route path="manage/ngos" element={<NGOs />} />
           <Route path="adoption" element={<AdoptionRequest />} />
+          <Route path="stray-dogs" element={<StrayDogReports />} />
           <Route path="medical" element={<MedicalEmergencyRequest />} />
           <Route path="tasks" element={<Tasks />} />
           <Route path="lost-found" element={<LostFound />} />

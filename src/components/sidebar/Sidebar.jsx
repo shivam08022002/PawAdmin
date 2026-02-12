@@ -20,6 +20,7 @@ import {
   UserCheck,
   Users,
   ClipboardList,
+  AlertCircle,
 } from 'lucide-react'
 
 function cx(...parts) {
@@ -46,6 +47,7 @@ export default function Sidebar({ isOpen = false, onClose }) {
         ],
       },
       { to: '/adoption', label: 'Adoption Request', icon: Heart },
+      { to: '/stray-dogs', label: 'Stray Dogs Report', icon: AlertCircle },
       { to: '/medical', label: 'Medical Request', icon: Activity },
       { to: '/tasks', label: 'Tasks', icon: ClipboardList },
       { to: '/lost-found', label: 'Lost & Found', icon: Search },

@@ -91,3 +91,36 @@ export const createTask = async (taskData) => {
     throw error;
   }
 };
+// Get all reports (Stray Dogs)
+export const getAllReports = async () => {
+  try {
+    const response = await api.get('/reports/all');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get all adoption requests
+export const getAdoptionRequests = async () => {
+  try {
+    const response = await api.get('/admin/adoption-requests');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Send notification to a role
+export const sendNotificationToRole = async (role, title, message) => {
+  try {
+    const response = await api.post('/admin/notifications/send', {
+      role,
+      title,
+      message,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
