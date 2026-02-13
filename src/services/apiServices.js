@@ -91,6 +91,16 @@ export const createTask = async (taskData) => {
     throw error;
   }
 };
+
+// Get all tasks
+export const getAllTasks = async () => {
+  try {
+    const response = await api.get('/tasks');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 // Get all reports (Stray Dogs)
 export const getAllReports = async () => {
   try {

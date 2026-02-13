@@ -50,7 +50,7 @@ export default function Sidebar({ isOpen = false, onClose }) {
       { to: '/stray-dogs', label: 'Stray Dogs Report', icon: AlertCircle },
       { to: '/medical', label: 'Medical Request', icon: Activity },
       { to: '/tasks', label: 'Tasks', icon: ClipboardList },
-      { to: '/lost-found', label: 'Lost & Found', icon: Search },
+      // { to: '/lost-found', label: 'Lost & Found', icon: Search },
       { to: '/sponsors', label: 'Sponsors', icon: Handshake },
       { to: '/notifications', label: 'Notifications', icon: Bell },
       { to: '/profile', label: 'Profile', icon: User },

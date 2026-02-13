@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react'
 import DataTable from '../components/table/DataTable.jsx'
 import Modal from '../components/common/Modal.jsx'
 import TimeInput from '../components/common/TimeInput.jsx'
-import { createTask, getAllVolunteers } from '../services/apiServices'
+import { createTask, getAllVolunteers, getAllTasks } from '../services/apiServices'
 import './Page.css'
 
 export default function Tasks() {
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [pageLoading, setPageLoading] = useState(true)
   const [volunteers, setVolunteers] = useState([])
+  const [tasks, setTasks] = useState([])
   const [formData, setFormData] = useState({
     title: '',
     category: '',
@@ -23,24 +25,39 @@ export default function Tasks() {
     assignedVolunteer: ''
   })
 
-  const [columns] = useState([
-    { key: 'task', label: 'Task' },
-    { key: 'assignee', label: 'Assignee' },
+  const columns = [
+    { key: 'title', label: 'Task' },
+    { key: 'category', label: 'Category' },
+    { key: 'assignedVolunteer', label: 'Assignee', render: (v) => v?.name || 'N/A' },
     { key: 'status', label: 'Status', render: (v) => (
-      <span className={`badge ${v.toLowerCase()}`}>{v[0].toUpperCase()+v.slice(1)}</span>
+      <span className={`badge ${v?.toLowerCase() || 'pending'}`}>
+        {(v || 'pending')[0].toUpperCase() + (v || 'pending').slice(1)}
+      </span>
     ) },
-    { key: 'due', label: 'Due' },
-  ])
-  
-  const [rows] = useState([
-    { task: 'Verify shelter documents', assignee: 'Asha', status: 'pending', due: '02/20/2024' },
-    { task: 'Call Vet partner', assignee: 'Vikram', status: 'approved', due: '02/18/2024' },
-    { task: 'Update adoption listing', assignee: 'Neha', status: 'pending', due: '02/19/2024' },
-  ])
+    { key: 'priority', label: 'Priority', render: (v) => (
+      <span className={`priority-tag ${v?.toLowerCase() || 'medium'}`}>
+        {v || 'Medium'}
+      </span>
+    ) },
+    { key: 'date', label: 'Due Date' },
+  ]
 
   useEffect(() => {
     fetchVolunteers()
+    fetchTasks()
   }, [])
+
+  const fetchTasks = async () => {
+    try {
+      setPageLoading(true)
+      const data = await getAllTasks()
+      setTasks(data.tasks || [])
+    } catch (err) {
+      console.error('Failed to fetch tasks', err)
+    } finally {
+      setPageLoading(false)
+    }
+  }
 
   const fetchVolunteers = async () => {
     try {
@@ -78,7 +95,7 @@ export default function Tasks() {
         assignedVolunteer: ''
       })
       alert('Task created successfully')
-      // Here you would typically refresh the task list
+      fetchTasks()
     } catch (err) {
       console.error(err)
       alert('Failed to create task')
@@ -94,7 +111,11 @@ export default function Tasks() {
         <button className="btn-primary" onClick={() => setShowModal(true)}>Create Task</button>
       </div>
       
-      <DataTable title="Tasks" columns={columns} rows={rows} />
+      {pageLoading ? (
+        <div className="card list-card">Loading tasks...</div>
+      ) : (
+        <DataTable title="Tasks" columns={columns} rows={tasks} />
+      )}
 
       <Modal
         isOpen={showModal}
