@@ -195,3 +195,196 @@
 .badge.scheduled { background: #dcfce7; color: #166534; }
 .badge.completed { background: #d1fae5; color: #065f46; }
 .badge.pending { background: #fef9c3; color: #854d0e; }
+
+/* Assignee Info */
+.assignee-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.small {
+  font-size: 11px;
+}
+
+.sponsor-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: radial-gradient(circle at top left, #eff6ff, #ffffff);
+  border: 1px solid #e5e7eb;
+}
+
+.sponsor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sponsor-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sponsor-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.sponsor-amount {
+  font-weight: 700;
+  font-size: 16px;
+  color: #16a34a;
+}
+
+.sponsor-message {
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.sponsor-meta {
+  margin-top: 4px;
+}
+
+.sponsor-summary {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #eef2ff, #ecfeff);
+  border: 1px solid #e5e7eb;
+}
+
+.sponsor-summary-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sponsor-summary-amount {
+  font-size: 24px;
+  font-weight: 800;
+  color: #047857;
+}
+
+.sponsor-summary-metrics {
+  display: flex;
+  gap: 24px;
+}
+
+.sponsor-summary-count {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.lost-found-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.lost-found-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lost-found-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.lost-found-type {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.lost-found-type.lost {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.lost-found-type.found {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.lost-found-date {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.lost-found-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.lost-found-description {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.lost-found-meta {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.lost-found-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lost-found-icon {
+  font-size: 14px;
+}
+
+.lost-found-photo {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e5e7eb;
+  min-height: 120px;
+}
+
+.lost-found-photo img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.lost-found-photo-placeholder {
+  width: 100%;
+  height: 160px;
+}
+
+.lost-found-status {
+  margin-top: 8px;
+}
+
+.active-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+

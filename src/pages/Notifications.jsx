@@ -12,7 +12,7 @@ export default function Notifications() {
   const [error, setError] = useState(null)
 
   const roles = [
-    { id: 'pawparent', label: 'Paw Parent' },
+    { id: 'pawParent', label: 'Paw Parent' },
     { id: 'volunteer', label: 'Volunteer' },
     { id: 'shelter', label: 'Shelter' },
     { id: 'brand', label: 'Brand' },
@@ -29,8 +29,8 @@ export default function Notifications() {
     try {
       setLoading(true)
       setError(null)
-      
-      await sendNotificationToRole(activeTab, title.trim(), message.trim())
+      const roleForApi = activeTab
+      await sendNotificationToRole(roleForApi, title.trim(), message.trim())
       
       setSuccess(true)
       setTitle('')

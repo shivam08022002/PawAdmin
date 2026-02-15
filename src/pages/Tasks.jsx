@@ -15,12 +15,12 @@ export default function Tasks() {
     title: '',
     category: '',
     date: '',
-    startTime: '',
-    endTime: '',
+    startTime: '16:00',
+    endTime: '18:00',
     priority: 'Medium',
     location: '',
     description: '',
-    reminder: '',
+    reminder: '15 min before',
     notes: '',
     assignedVolunteer: ''
   })
@@ -28,7 +28,22 @@ export default function Tasks() {
   const columns = [
     { key: 'title', label: 'Task' },
     { key: 'category', label: 'Category' },
-    { key: 'assignedVolunteer', label: 'Assignee', render: (v) => v?.name || 'N/A' },
+    { 
+      key: 'assignedVolunteer', 
+      label: 'Assignee', 
+      render: (v) => v ? (
+        <div className="assignee-info">
+          <div className="font-medium">{v.name}</div>
+          <div className="text-muted small">{v.email}</div>
+        </div>
+      ) : 'N/A' 
+    },
+    { key: 'location', label: 'Location' },
+    { 
+      key: 'time', 
+      label: 'Time', 
+      render: (_, row) => `${row.startTime} - ${row.endTime}` 
+    },
     { key: 'status', label: 'Status', render: (v) => (
       <span className={`badge ${v?.toLowerCase() || 'pending'}`}>
         {(v || 'pending')[0].toUpperCase() + (v || 'pending').slice(1)}
@@ -62,9 +77,8 @@ export default function Tasks() {
   const fetchVolunteers = async () => {
     try {
       const data = await getAllVolunteers()
-      // Assuming API returns array of volunteers directly or in data property
-      // Adjust based on actual API response structure if needed
-      setVolunteers(Array.isArray(data) ? data : data.volunteers || [])
+      // The API returns an array of volunteers directly
+      setVolunteers(Array.isArray(data) ? data : [])
     } catch (err) {
       console.error('Failed to fetch volunteers', err)
     }
@@ -85,20 +99,20 @@ export default function Tasks() {
         title: '',
         category: '',
         date: '',
-        startTime: '',
-        endTime: '',
+        startTime: '16:00',
+        endTime: '18:00',
         priority: 'Medium',
         location: '',
         description: '',
-        reminder: '',
+        reminder: '15 min before',
         notes: '',
         assignedVolunteer: ''
       })
-      alert('Task created successfully')
+      alert('Task created successfully!')
       fetchTasks()
     } catch (err) {
       console.error(err)
-      alert('Failed to create task')
+      alert(err.response?.data?.message || 'Failed to create task. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -176,7 +190,7 @@ export default function Tasks() {
             <select name="assignedVolunteer" value={formData.assignedVolunteer} onChange={handleChange}>
               <option value="">Select Volunteer</option>
               {volunteers.map(v => (
-                <option key={v._id} value={v._id}>{v.name}</option>
+                <option key={v._id} value={v.userId}>{v.name}</option>
               ))}
             </select>
           </div>

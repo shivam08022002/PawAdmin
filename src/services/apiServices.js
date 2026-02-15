@@ -52,6 +52,16 @@ export const getAllVolunteers = async () => {
   }
 };
 
+// Get admin volunteers for tasks
+export const getAdminVolunteers = async () => {
+  try {
+    const response = await api.get('/tasks/admin/volunteers');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Get dashboard stats
 export const getDashboardStats = async () => {
   try {
@@ -101,6 +111,36 @@ export const getAllTasks = async () => {
     throw error;
   }
 };
+
+// Approve adoption request
+export const approveAdoptionRequest = async (requestId) => {
+  try {
+    const response = await api.patch(`/admin/adoption-requests/${requestId}/approve`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get sponsors
+export const getSponsors = async () => {
+  try {
+    const response = await api.get('/sponsors');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get lost & found (admin)
+export const getLostAndFoundAdmin = async () => {
+  try {
+    const response = await api.get('/lost-found/admin');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 // Get all reports (Stray Dogs)
 export const getAllReports = async () => {
   try {
@@ -122,12 +162,12 @@ export const getAdoptionRequests = async () => {
 };
 
 // Send notification to a role
-export const sendNotificationToRole = async (role, title, message) => {
+export const sendNotificationToRole = async (targetRole, title, message) => {
   try {
-    const response = await api.post('/admin/notifications/send', {
-      role,
+    const response = await api.post('/notifications', {
       title,
       message,
+      targetRole,
     });
     return response.data;
   } catch (error) {
